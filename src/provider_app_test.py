@@ -2,6 +2,11 @@
 import pytest
 import requests
 
+@pytest.fixture(autouse=True)
+def response():
+    return requests.get("http://127.0.0.1:5000/provider/api/items")
+
+
 def test_get_items_check_status_code():
     response = requests.get("http://127.0.0.1:5000/provider/api/items")
     assert response.status_code == 200
